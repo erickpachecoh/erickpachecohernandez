@@ -3,18 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <!-- ============ FAVICONS ============ -->
 <link rel="apple-touch-icon" sizes="180x180" href="/Favicons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/Favicons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/Favicons/favicon-16x16.png">
 <link rel="manifest" href="/Favicons/site.webmanifest">
 <link rel="shortcut icon" href="/Favicons/favicon.ico">
+
 <!-- ============ SEO PRIMARIO ============ -->
 <title>Erick Pacheco — People Analytics & HR Tech Specialist</title>
 <meta name="description" content="Especialista en People Analytics, Compensación y Beneficios con experiencia en banca. Dashboards en Power BI, automatización y análisis de equidad interna para +4.500 colaboradores.">
 <meta name="author" content="Erick Pacheco Hernández">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="keywords" content="People Analytics, Compensación, Beneficios, HR Tech, Power BI, SAP, Equidad Interna, Arquitectura Organizacional, Bogotá, Colombia">
+<meta name="keywords" content="People Analytics, Compensación, Beneficios, HR Tech, Power BI, SAP, Equidad Interna, Arquitectura Organizacional, Bogotá, Colombia, Fiverr, Freelance, Landing Pages, Análisis de Datos, Generación de Leads">
 
 <!-- ============ CANONICAL ============ -->
 <link rel="canonical" href="https://erickpachecohernandez.netlify.app/">
@@ -129,6 +131,49 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Domina Power BI, DAX, Power Query, SAP, Power Automate, Excel Avanzado (con VBA), SharePoint y HTML/JavaScript para desarrollo web. Su enfoque es la analítica aplicada a decisiones de compensación, beneficios y estructura organizacional."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- ============ JSON-LD · SERVICIOS FREELANCE ============ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Service",
+        "name": "Diseño y Rediseño de Landing Pages",
+        "description": "Creo páginas de aterrizaje optimizadas para convertir visitantes en clientes.",
+        "url": "https://www.fiverr.com/s/d0007N8",
+        "provider": { "@type": "Person", "name": "Erick Pacheco Hernández" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Service",
+        "name": "Análisis de Datos de Negocio",
+        "description": "Analizo tus datos para identificar oportunidades de mejora y optimización.",
+        "url": "https://www.fiverr.com/s/bkkko5Y",
+        "provider": { "@type": "Person", "name": "Erick Pacheco Hernández" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Service",
+        "name": "Generación de Leads Cualificados",
+        "description": "Encuentro prospectos de alta calidad y construyo pipelines de ventas.",
+        "url": "https://www.fiverr.com/s/Q222b9y",
+        "provider": { "@type": "Person", "name": "Erick Pacheco Hernández" }
       }
     }
   ]
@@ -333,7 +378,72 @@
   .btn-nav-contact:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; }
   .btn-nav-contact svg { width: 15px; height: 15px; }
 
-  @media (max-width: 900px) { .nav-links { display: none; } }
+  /* ============ MENÚ MÓVIL ============ */
+  .mobile-menu-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    cursor: pointer;
+    padding: 8px;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .mobile-menu-toggle:hover { border-color: var(--accent-border); color: var(--accent); }
+  .mobile-menu-toggle svg { width: 22px; height: 22px; }
+
+  .mobile-menu {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100vh;
+    background: var(--bg);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    visibility: hidden;
+  }
+  .mobile-menu.active {
+    transform: translateY(0);
+    visibility: visible;
+  }
+  .mobile-menu-close {
+    position: absolute;
+    top: 20px; right: 24px;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    padding: 8px;
+  }
+  .mobile-menu-close svg { width: 28px; height: 28px; }
+  .mobile-menu-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .mobile-menu-links a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+  .mobile-menu-links a:hover {
+    color: var(--accent);
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .mobile-menu-toggle { display: inline-flex; }
+  }
   @media (max-width: 480px) {
     .btn-nav-contact span { display: none; }
     .btn-nav-contact { padding: 10px; }
@@ -585,6 +695,111 @@
     letter-spacing: 0.3px;
   }
 
+  /* ============ SERVICIOS FREELANCE ============ */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .service-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-border);
+    box-shadow: var(--shadow);
+  }
+
+  .service-card:hover::before {
+    opacity: 1;
+  }
+
+  .service-icon {
+    font-size: 2rem;
+    margin-bottom: 18px;
+    line-height: 1;
+  }
+
+  .service-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-strong);
+    margin-bottom: 14px;
+    line-height: 1.3;
+    letter-spacing: -0.3px;
+  }
+
+  .service-desc {
+    font-size: 0.94rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .btn-service {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background: transparent;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: 1.5px solid var(--accent-border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    font-family: var(--font-sans);
+    text-decoration: none;
+    width: 100%;
+  }
+
+  .btn-service:hover {
+    background: var(--accent);
+    color: var(--accent-contrast);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px var(--accent-border);
+  }
+
+  .btn-service svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+  }
+
+  .btn-service:hover svg {
+    transform: translate(2px, -2px);
+  }
+
   .timeline { position: relative; padding-left: 32px; }
   .timeline::before {
     content: '';
@@ -798,6 +1013,7 @@
     <div class="nav-links">
       <a href="#sobre-mi">Sobre mí</a>
       <a href="#proyectos">Proyectos</a>
+      <a href="#servicios">Servicios</a>
       <a href="#experiencia">Experiencia</a>
       <a href="#educacion">Educación</a>
       <a href="#faq">FAQ</a>
@@ -805,6 +1021,11 @@
     </div>
 
     <div class="nav-actions">
+      <!-- Botón Hamburguesa Móvil -->
+      <button type="button" class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menú de navegación">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="Cambiar tema de color" title="Cambiar tema">
         <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="4"/>
@@ -825,6 +1046,22 @@
     </div>
   </div>
 </nav>
+
+<!-- ============ MENÚ MÓVIL OVERLAY ============ -->
+<div class="mobile-menu" id="mobileMenu">
+  <button type="button" class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+  </button>
+  <div class="mobile-menu-links">
+    <a href="#sobre-mi">Sobre mí</a>
+    <a href="#proyectos">Proyectos</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#experiencia">Experiencia</a>
+    <a href="#educacion">Educación</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</div>
 
 <!-- ============ HERO ============ -->
 <header class="hero" id="hero">
@@ -939,6 +1176,73 @@
         <h3 class="project-title">Diseño de Perfiles de Cargo y Manual de Funciones</h3>
         <p class="project-desc">Estructuré y digitalicé perfiles de cargo para personal docente, administrativo y directivo, y definí el Manual de Funciones y Competencias alineado a normativa. Sentó las bases para estandarizar niveles, responsabilidades y posteriores análisis de equidad.</p>
         <div class="project-badges"><span class="badge">Job Architecture</span><span class="badge">Perfiles de Cargo</span><span class="badge">Competencias</span><span class="badge">Normativa</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICIOS FREELANCE ============ -->
+<section id="servicios">
+  <div class="section-inner">
+    <div class="section-head">
+      <p class="section-label">02.5 · Servicios Freelance</p>
+      <h2 class="section-title">¿Necesitas ayuda puntual con un proyecto?</h2>
+      <p class="section-sub">Además de mi experiencia en banca, ofrezco servicios especializados a través de Fiverr para ayudarte a materializar tus ideas con la misma rigurosidad analítica.</p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Servicio 1: Landing Page -->
+      <article class="service-card">
+        <div class="service-icon">🚀</div>
+        <h3 class="service-title">Diseño y Rediseño de Landing Pages</h3>
+        <p class="service-desc">
+          Creo páginas de aterrizaje optimizadas para convertir visitantes en clientes. Desde el wireframe hasta el despliegue, enfocadas en UX y velocidad de carga.
+        </p>
+        <div class="service-tags">
+          <span class="badge">HTML/CSS</span>
+          <span class="badge">Conversión</span>
+          <span class="badge">Responsive</span>
+        </div>
+        <a href="https://www.fiverr.com/s/d0007N8" target="_blank" rel="noopener noreferrer" class="btn-service">
+          Ver servicio en Fiverr
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+      </article>
+
+      <!-- Servicio 2: Análisis de Datos -->
+      <article class="service-card">
+        <div class="service-icon">📊</div>
+        <h3 class="service-title">Análisis de Datos de Negocio</h3>
+        <p class="service-desc">
+          Analizo tus datos para identificar oportunidades de mejora, patrones de comportamiento y áreas de optimización. Te entrego insights accionables, no solo números.
+        </p>
+        <div class="service-tags">
+          <span class="badge">Power BI</span>
+          <span class="badge">Análisis</span>
+          <span class="badge">Insights</span>
+        </div>
+        <a href="https://www.fiverr.com/s/bkkko5Y" target="_blank" rel="noopener noreferrer" class="btn-service">
+          Ver servicio en Fiverr
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+      </article>
+
+      <!-- Servicio 3: Generación de Leads -->
+      <article class="service-card">
+        <div class="service-icon">🎯</div>
+        <h3 class="service-title">Generación de Leads Cualificados</h3>
+        <p class="service-desc">
+          Encuentro prospectos de alta calidad para tu negocio y te ayudo a construir un pipeline de ventas sólido. Investigación, prospección y estrategia de contacto.
+        </p>
+        <div class="service-tags">
+          <span class="badge">Prospección</span>
+          <span class="badge">Pipeline</span>
+          <span class="badge">Estrategia</span>
+        </div>
+        <a href="https://www.fiverr.com/s/Q222b9y" target="_blank" rel="noopener noreferrer" class="btn-service">
+          Ver servicio en Fiverr
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
       </article>
     </div>
   </div>
@@ -1144,6 +1448,33 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ============ Menú Móvil ============
+  (function() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+    if (mobileMenu && mobileMenuToggle && mobileMenuClose) {
+      mobileMenuToggle.addEventListener('click', () => {
+        mobileMenu.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Evita scroll de fondo
+      });
+
+      mobileMenuClose.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+
+      // Cerrar menú al hacer clic en un enlace
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+  })();
 
   // ============ Theme toggle ============
   (function () {
