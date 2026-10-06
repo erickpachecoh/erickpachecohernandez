@@ -993,7 +993,56 @@
   .fade-up.d3 { animation-delay: 0.4s; }
   .fade-up.d4 { animation-delay: 0.55s; }
   .fade-up.d5 { animation-delay: 0.7s; }
+  /* ============ AJUSTES RESPONSIVE PARA MÓVILES ============ */
+  @media (max-width: 768px) {
+    /* Reducir el padding general de las secciones */
+    section {
+      padding: 60px 16px;
+    }
+    
+    .section-head {
+      margin-bottom: 40px;
+    }
 
+    /* Ajustar el timeline para que no se salga */
+    .timeline {
+      padding-left: 20px;
+    }
+    .timeline-item::before {
+      left: -20px;
+    }
+
+    /* Ajustar las tarjetas de proyectos y servicios */
+    .projects-grid, .services-grid {
+      grid-template-columns: 1fr; /* Una sola columna en móviles */
+    }
+  }
+
+  @media (max-width: 480px) {
+    /* Reducir el padding de la caja de contacto para que quepa el reCAPTCHA */
+    .contact-box {
+      padding: 32px 16px;
+    }
+
+    /* Hacer que el reCAPTCHA se adapte al ancho de la pantalla */
+    .captcha-wrap {
+      transform: scale(0.85);
+      transform-origin: center;
+      margin: 0 -15px 16px -15px; /* Compensa la escala */
+    }
+
+    /* Ajustar el tamaño de los botones de contacto */
+    .btn-contact {
+      width: 100%;
+      justify-content: center;
+      padding: 12px 18px;
+    }
+
+    /* Ajustar los badges para que no se amontonen */
+    .project-badges, .service-tags, .timeline-tags {
+      gap: 6px;
+    }
+  }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
