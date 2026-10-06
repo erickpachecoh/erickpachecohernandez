@@ -1,0 +1,23 @@
+# netlify.toml — Configuración del sitio Erick Pacheco
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Redirección: cualquier llamada a /api/verify-recaptcha → función serverless
+[[redirects]]
+  from = "/api/verify-recaptcha"
+  to = "/.netlify/functions/verify-recaptcha"
+  status = 200
+
+# Headers de seguridad recomendados
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"

@@ -1,0 +1,41 @@
+# Erick Pacheco Hernández
+
+> People Analytics & HR Tech Specialist con más de 5 años de experiencia en banca y servicios financieros. Especialista en Compensación, Beneficios, Alianzas Estratégicas y análisis de datos aplicado a decisiones de negocio.
+
+## Perfil profesional
+- **Nombre:** Erick Pacheco Hernández
+- **Rol:** People Analytics & HR Tech Specialist
+- **Ubicación:** Bogotá, Colombia
+- **Email:** erickpachecoh01@gmail.com
+- **LinkedIn:** https://www.linkedin.com/in/epachecoh/
+
+## Especialidades
+- People Analytics: dashboards en Power BI, KPIs, modelos ponderados, análisis de brechas
+- Compensación: equidad interna, competitividad externa, bandas salariales, estudios de mercado
+- Beneficios: negociación de alianzas estratégicas, subsidios 10–20%, gestión de proveedores
+- Arquitectura Organizacional: arquetipos, job architecture, FTE, span of control, layers
+- Tecnología: Power BI, DAX, Power Query, SAP, Power Automate, VBA, Excel Avanzado, HTML, JavaScript
+
+## Experiencia
+- **Analista Senior de Compensación y Beneficios** — SCOTIAGBS · Grupo Scotiabank Colombia (Jun 2023 – Sep 2026)
+- **Consultor en Atracción de Talento** — SCOTIAGBS · Grupo Scotiabank Colombia (Ago 2021 – Abr 2024)
+- **Analista de Reclutamiento** — Applus Norcontrol Colombia Ltda. (Mar 2021 – Ago 2021)
+- **Consultor en Desarrollo Organizacional** — Liceo Hypatia School (May 2020 – Sep 2020)
+
+## Formación académica
+- Maestría en Administración (MBA) — Instituto Europeo de Posgrado (IEP), 2021–2022
+- Maestría Ejecutiva en Recursos Humanos y Desarrollo Digital del Talento — IEP, 2021–2022
+- Psicología Organizacional — Universidad de La Sabana, 2015–2020
+- Diplomado en Big Data y Business Analytics — Universidad de La Sabana, 2020
+
+## Proyectos destacados
+- Dashboard de Equidad Interna y Brechas de Mercado (Power BI, +4.500 colaboradores)
+- Analítica de Adopción y ROI del Portafolio de Beneficios (+10 proveedores)
+- Herramientas VBA para Reportes de Asignaciones Salariales
+- Indicadores de Rotación y Deserción en Procesos de Selección
+- Sitios Web y Landing Pages con IA Aplicada (HTML, JavaScript, Cloudflare, Resend)
+
+## Contacto
+- **Email:** erickpachecoh01@gmail.com
+- **LinkedIn:** https://www.linkedin.com/in/epachecoh/
+- **WhatsApp:** https://wa.me/573014100913
