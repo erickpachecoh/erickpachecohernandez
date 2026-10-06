@@ -130,7 +130,7 @@
 }
 </script>
 
-<!-- ============ RECAPTCHA ============ -->
+<!-- ============ RECAPTCHA v2 (Checkbox) ============ -->
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <!-- ============ TEMA (aplicado antes de pintar) ============ -->
@@ -1085,6 +1085,7 @@
         Roles de <strong>People Analytics</strong>, <strong>Compensación Estratégica</strong>, <strong>HR Tech</strong> o proyectos de analítica aplicada. Escríbeme directamente por el canal que prefieras.
       </p>
 
+      <!-- reCAPTCHA v2 Checkbox -->
       <div class="captcha-wrap">
         <div class="g-recaptcha"
              data-sitekey="6LfyZOItAAAAAHOS5B4Dxd8jlxndGxrvKLQAqA45"
@@ -1236,7 +1237,6 @@
 
   // ============ Callback de reCAPTCHA ============
   async function onCaptchaSuccess(token) {
-    // En local o file:// no existe la función serverless → confiar solo en el cliente
     if (SKIP_SERVER_VALIDATION) {
       console.info('[captcha] validación local: sin verificación server-side.');
       captchaOk = true;
@@ -1246,7 +1246,6 @@
       return;
     }
 
-    // En producción: validar contra la función serverless de Netlify
     try {
       const res = await fetch('/api/verify-recaptcha', {
         method: 'POST',
