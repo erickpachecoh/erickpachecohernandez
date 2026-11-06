@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
   <!-- ============ FAVICONS ============ -->
   <link rel="apple-touch-icon" sizes="180x180" href="/Favicons/apple-touch-icon.png">
@@ -28,7 +28,6 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap"
     rel="stylesheet">
   <link rel="preload" as="image" href="Pahe_Scale.png" fetchpriority="high">
-  <link rel="preconnect" href="https://www.google.com">
   <link rel="dns-prefetch" href="https://www.gstatic.com">
 
   <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
@@ -77,7 +76,7 @@
           "addressCountry": "CO"
         },
         "knowsAbout": [
-          "Desarrollo Web", "Landing Pages", "Automatización de WhatsApp", 
+          "Desarrollo Web", "Landing Pages", "Automatización de WhatsApp",
           "Power BI", "Google Cloud", "Lean Six Sigma", "Reingeniería de Procesos",
           "Gestión de Postventa", "Academias Técnicas", "People Analytics"
         ],
@@ -97,8 +96,6 @@
     ]
   }
   </script>
-
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
   <script>
     (function () {
@@ -132,6 +129,20 @@
     li,
     a {
       word-break: break-word;
+    }
+
+    button,
+    a,
+    .chat-btn,
+    .btn-service,
+    .btn-primary,
+    .btn-ghost,
+    .btn-nav-contact,
+    .theme-toggle,
+    .mobile-menu-toggle,
+    .modal-close {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
 
     /* ============ MODO CLARO ============ */
@@ -185,6 +196,12 @@
       --radius: 12px;
       --maxw: 1140px;
       --transition: 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --nav-h: 56px;
+      }
     }
 
     html {
@@ -257,11 +274,11 @@
       z-index: 100;
       display: flex;
       align-items: center;
-      transition: background-color var(--transition), border-color var(--transition);
+      transition: transform 0.3s ease, background-color var(--transition), border-color var(--transition);
       overflow: hidden;
+      padding-top: env(safe-area-inset-top);
     }
 
-    /* ✅ MATRIX: efecto lluvia binaria sutil */
     .nav-matrix {
       position: absolute;
       top: 0;
@@ -281,6 +298,12 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+      .nav-matrix {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
       .nav-matrix {
         display: none;
       }
@@ -424,6 +447,8 @@
       align-items: center;
       justify-content: center;
       transition: all 0.2s ease;
+      min-width: 40px;
+      min-height: 40px;
     }
 
     .mobile-menu-toggle:hover {
@@ -452,6 +477,8 @@
       transform: translateY(-100%);
       transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
       visibility: hidden;
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
     }
 
     .mobile-menu.active {
@@ -468,6 +495,8 @@
       color: var(--text);
       cursor: pointer;
       padding: 8px;
+      min-width: 44px;
+      min-height: 44px;
     }
 
     .mobile-menu-close svg {
@@ -487,6 +516,7 @@
       font-weight: 700;
       color: var(--text);
       transition: color 0.2s ease, transform 0.2s ease;
+      padding: 12px 24px;
     }
 
     .mobile-menu-links a:hover {
@@ -655,6 +685,8 @@
       align-items: center;
       gap: 10px;
       border: 2px solid var(--accent);
+      min-height: 48px;
+      justify-content: center;
     }
 
     .btn-primary:hover {
@@ -676,6 +708,8 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      min-height: 48px;
+      justify-content: center;
     }
 
     .btn-ghost:hover {
@@ -906,6 +940,46 @@
       display: none;
     }
 
+    .carousel-hint {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .carousel-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: background 0.2s, width 0.2s;
+    }
+
+    .carousel-dot.active {
+      background: var(--accent);
+      width: 18px;
+      border-radius: 3px;
+    }
+
+    .carousel-arrow {
+      margin-left: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    @media (min-width: 769px) {
+      .carousel-arrow {
+        display: none;
+      }
+
+      .carousel-hint {
+        display: none;
+      }
+    }
+
     .solution-card {
       flex: 0 0 320px;
       scroll-snap-align: start;
@@ -1000,6 +1074,7 @@
       transition: all 0.2s ease;
       width: 100%;
       text-decoration: none;
+      min-height: 48px;
     }
 
     .btn-service:hover {
@@ -1105,6 +1180,7 @@
       font-family: var(--font-sans);
       font-size: 1rem;
       transition: border-color 0.2s;
+      min-height: 48px;
     }
 
     .form-row input:focus,
@@ -1124,6 +1200,8 @@
 
     .consent input {
       margin-top: 3px;
+      min-width: 20px;
+      min-height: 20px;
     }
 
     .consent a {
@@ -1173,18 +1251,11 @@
       margin-bottom: 24px;
     }
 
-    .captcha-container {
-      display: none;
-      padding: 24px;
-      justify-content: center;
-      border-top: 2px solid var(--border);
-      background: var(--surface);
-    }
-
     .chat-container {
       display: none;
       flex-direction: column;
       height: 450px;
+      max-height: 70vh;
       background: var(--bg);
     }
 
@@ -1209,6 +1280,7 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
+      -webkit-overflow-scrolling: touch;
     }
 
     .chat-message {
@@ -1246,12 +1318,16 @@
       background: var(--bg);
       border: 2px solid var(--accent);
       color: var(--accent);
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.85rem;
+      padding: 12px 18px;
+      min-height: 44px;
+      border-radius: 22px;
+      font-size: 0.9rem;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .chat-btn:hover {
@@ -1275,8 +1351,9 @@
       background: var(--bg);
       color: var(--text);
       font-family: var(--font-sans);
-      font-size: 0.95rem;
+      font-size: 1rem;
       outline: none;
+      min-height: 44px;
     }
 
     .chat-send {
@@ -1287,6 +1364,8 @@
       padding: 0 20px;
       font-weight: 800;
       cursor: pointer;
+      min-height: 44px;
+      min-width: 44px;
     }
 
     .chat-consent {
@@ -1306,6 +1385,7 @@
       background: var(--surface);
       position: relative;
       z-index: 1;
+      padding-bottom: calc(40px + env(safe-area-inset-bottom));
     }
 
     .footer-inner {
@@ -1342,6 +1422,7 @@
       font-weight: 600;
       transition: color 0.2s;
       cursor: pointer;
+      padding: 8px 0;
     }
 
     .footer-links a:hover {
@@ -1383,6 +1464,7 @@
       position: relative;
       transform: translateY(20px);
       transition: transform 0.3s;
+      -webkit-overflow-scrolling: touch;
     }
 
     .modal-overlay.active .modal-content {
@@ -1396,14 +1478,15 @@
       background: var(--surface-2);
       border: 1px solid var(--border);
       color: var(--text);
-      width: 32px;
-      height: 32px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       transition: background 0.2s;
+      z-index: 1;
     }
 
     .modal-close:hover {
@@ -1542,12 +1625,36 @@
       .footer-links {
         flex-direction: column;
         align-items: center;
-        gap: 16px;
+        gap: 8px;
       }
 
       .modal-content {
         padding: 24px;
         width: 95%;
+      }
+
+      @supports (height: 100dvh) {
+        .chat-container {
+          height: calc(100dvh - 120px);
+          max-height: calc(100dvh - 120px);
+        }
+      }
+
+      .modal-overlay {
+        align-items: flex-end;
+      }
+
+      .modal-content {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 20px 20px 0 0;
+        max-height: 90dvh;
+        padding: 32px 20px calc(32px + env(safe-area-inset-bottom));
+      }
+
+      .modal-close {
+        top: 12px;
+        right: 12px;
       }
     }
 
@@ -1592,8 +1699,7 @@
 
 <body>
 
-  <nav class="nav" aria-label="Navegación principal">
-    <!-- ✅ MATRIX: canvas de lluvia binaria sutil -->
+  <nav class="nav" id="mainNav" aria-label="Navegación principal">
     <canvas id="navMatrix" class="nav-matrix" aria-hidden="true"></canvas>
 
     <div class="nav-inner">
@@ -1660,7 +1766,6 @@
   </div>
 
   <main id="main">
-    <!-- HERO -->
     <section class="hero" id="hero" aria-labelledby="hero-title">
       <div class="hero-inner">
         <div class="hero-content">
@@ -1703,7 +1808,6 @@
       </div>
     </section>
 
-    <!-- NOSOTROS -->
     <section id="nosotros" aria-labelledby="nosotros-title">
       <div class="section-inner">
         <div class="section-head">
@@ -1741,7 +1845,6 @@
       </div>
     </section>
 
-    <!-- SOLUCIONES (CARRUSELES) -->
     <section id="soluciones" aria-labelledby="soluciones-title">
       <div class="section-inner">
         <div class="section-head">
@@ -1783,6 +1886,12 @@
               <a href="#agenda" class="btn-service" data-service="web" data-cta="card-web">Solicitar diagnóstico</a>
             </article>
           </div>
+          <div class="carousel-hint" aria-hidden="true">
+            <span class="carousel-dot active"></span>
+            <span class="carousel-dot"></span>
+            <span class="carousel-dot"></span>
+            <span class="carousel-arrow">desliza →</span>
+          </div>
         </div>
 
         <!-- CATEGORÍA 2 -->
@@ -1811,10 +1920,17 @@
               <div class="solution-icon">📈</div>
               <h4 class="solution-title">Control Financiero</h4>
               <p class="solution-desc">Sistemas de control de facturación, cartera y gastos integrados.
-                <strong>Impacto:</strong> Mejora del flujo de caja y control total.</p>
+                <strong>Impacto:</strong> Mejora del flujo de caja y control total.
+              </p>
               <div class="solution-tags"><span class="badge">Finanzas</span><span class="badge">Cartera</span></div>
               <a href="#agenda" class="btn-service" data-service="bi" data-cta="card-bi">Solicitar diagnóstico</a>
             </article>
+          </div>
+          <div class="carousel-hint" aria-hidden="true">
+            <span class="carousel-dot active"></span>
+            <span class="carousel-dot"></span>
+            <span class="carousel-dot"></span>
+            <span class="carousel-arrow">desliza →</span>
           </div>
         </div>
 
@@ -1839,6 +1955,11 @@
               <div class="solution-tags"><span class="badge">Lean</span><span class="badge">Eficiencia</span></div>
               <a href="#agenda" class="btn-service" data-service="lean" data-cta="card-lean">Solicitar diagnóstico</a>
             </article>
+          </div>
+          <div class="carousel-hint" aria-hidden="true">
+            <span class="carousel-dot active"></span>
+            <span class="carousel-dot"></span>
+            <span class="carousel-arrow">desliza →</span>
           </div>
         </div>
 
@@ -1868,11 +1989,18 @@
               <div class="solution-icon">📦</div>
               <h4 class="solution-title">Logística de Repuestos</h4>
               <p class="solution-desc">Optimizamos tus inventarios mediante indicadores clave (Fill Rate, Back Order).
-                <strong>Impacto:</strong> Disponibilidad de partes sin exceso de capital.</p>
+                <strong>Impacto:</strong> Disponibilidad de partes sin exceso de capital.
+              </p>
               <div class="solution-tags"><span class="badge">Repuestos</span><span class="badge">Logística</span></div>
               <a href="#agenda" class="btn-service" data-service="service" data-cta="card-service">Solicitar
                 diagnóstico</a>
             </article>
+          </div>
+          <div class="carousel-hint" aria-hidden="true">
+            <span class="carousel-dot active"></span>
+            <span class="carousel-dot"></span>
+            <span class="carousel-dot"></span>
+            <span class="carousel-arrow">desliza →</span>
           </div>
         </div>
 
@@ -1900,12 +2028,16 @@
                 diagnóstico</a>
             </article>
           </div>
+          <div class="carousel-hint" aria-hidden="true">
+            <span class="carousel-dot active"></span>
+            <span class="carousel-dot"></span>
+            <span class="carousel-arrow">desliza →</span>
+          </div>
         </div>
 
       </div>
     </section>
 
-    <!-- CÓMO TRABAJAMOS -->
     <section id="como-trabajamos" aria-labelledby="proceso-title">
       <div class="section-inner">
         <div class="section-head" style="text-align:center; max-width:720px; margin:0 auto 48px;">
@@ -1943,17 +2075,18 @@
       </div>
     </section>
 
-    <!-- CONTACTO -->
     <section id="contacto" aria-labelledby="contacto-title">
       <div class="section-inner">
         <div id="agenda" class="agenda-card">
           <div class="section-head" style="text-align:center; max-width:640px; margin:0 auto 32px;">
             <h2 id="contacto-title" class="section-title">Agenda tu diagnóstico gratuito</h2>
             <p class="section-sub">30 minutos con un consultor. Sin venta, sin compromiso. Respondemos en
-              <strong>&lt;24h hábiles</strong>.</p>
+              <strong>&lt;24h hábiles</strong>.
+            </p>
           </div>
 
           <form id="leadForm" action="/api/lead" method="POST" novalidate>
+            <!-- Honeypot anti-spam -->
             <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px"
               aria-hidden="true">
 
@@ -2007,11 +2140,8 @@
               asesor por WhatsApp.</p>
             <button type="button" class="btn-ghost" id="startChatBtn" style="margin:0 auto;">💬 Iniciar chat</button>
           </div>
-          <div class="captcha-container" id="captchaContainer">
-            <div class="g-recaptcha" data-sitekey="6LfyZOItAAAAAHOS5B4Dxd8jlxndGxrvKLQAqA45"
-              data-callback="onCaptchaSuccess" data-error-callback="onCaptchaError"
-              data-expired-callback="onCaptchaExpired" data-theme="light"></div>
-          </div>
+
+          <!-- ✅ CONTENEDOR DEL CHAT (Sin reCAPTCHA, entra directo) -->
           <div class="chat-container" id="chatContainer">
             <div class="chat-header">
               <div>
@@ -2052,8 +2182,7 @@
     </div>
   </footer>
 
-  <!-- ============ MODALES LEGALES ============ -->
-  <!-- Modal Privacidad -->
+  <!-- MODALES LEGALES -->
   <div class="modal-overlay" id="modal-privacidad">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal('modal-privacidad')" aria-label="Cerrar">✕</button>
@@ -2062,7 +2191,6 @@
       <p>En <strong>Pahe Scale</strong>, valoramos tu privacidad. Esta política describe cómo recopilamos, usamos y
         protegemos tus datos personales, en cumplimiento de la <strong>Ley 1581 de 2012</strong> (Colombia) y demás
         normativas aplicables.</p>
-
       <h3>1. Datos que recopilamos</h3>
       <ul>
         <li><strong>Datos de contacto:</strong> Nombre, correo corporativo y nombre de la empresa, recolectados a través
@@ -2070,7 +2198,6 @@
         <li><strong>Datos de navegación:</strong> Preferencia de tema (claro/oscuro) y datos técnicos anónimos mediante
           cookies esenciales.</li>
       </ul>
-
       <h3>2. Finalidad del tratamiento</h3>
       <p>Utilizamos tus datos exclusivamente para:</p>
       <ul>
@@ -2078,7 +2205,6 @@
         <li>Enviar propuestas comerciales relacionadas con nuestros servicios.</li>
         <li>Mejorar la experiencia de navegación en el sitio web.</li>
       </ul>
-
       <h3>3. Tus derechos</h3>
       <p>Como titular de los datos, tienes derecho a:</p>
       <ul>
@@ -2088,14 +2214,12 @@
         <li>Presentar quejas ante la Superintendencia de Industria y Comercio (SIC).</li>
       </ul>
       <p>Para ejercer estos derechos, puedes escribirnos a: <strong>pahe.scale@gmail.com</strong>.</p>
-
       <h3>4. Seguridad</h3>
       <p>Implementamos medidas técnicas y administrativas razonables para proteger tus datos contra acceso no
         autorizado, pérdida o alteración.</p>
     </div>
   </div>
 
-  <!-- Modal Términos -->
   <div class="modal-overlay" id="modal-terminos">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal('modal-terminos')" aria-label="Cerrar">✕</button>
@@ -2103,47 +2227,38 @@
       <p><strong>Última actualización:</strong> Noviembre de 2026</p>
       <p>El acceso y uso del sitio web de <strong>Pahe Scale</strong> implica la aceptación de los siguientes términos:
       </p>
-
       <h3>1. Naturaleza de la información</h3>
       <p>El contenido de este sitio es de carácter informativo. Las soluciones, diagnósticos y precios descritos están
         sujetos a evaluación y propuesta formal. Ninguna información en este sitio constituye un contrato vinculante
         hasta que se firme una propuesta comercial.</p>
-
       <h3>2. Propiedad Intelectual</h3>
       <p>Todos los textos, diseños, logotipos y código fuente de este sitio son propiedad de Pahe Scale o de sus
         respectivos autores. Queda prohibida su reproducción total o parcial sin autorización expresa.</p>
-
       <h3>3. Uso del sitio</h3>
       <p>El usuario se compromete a no utilizar el sitio para fines ilícitos, a no intentar vulnerar la seguridad del
         mismo y a proporcionar información veraz en los formularios de contacto.</p>
-
       <h3>4. Limitación de responsabilidad</h3>
       <p>Pahe Scale no se hace responsable por decisiones tomadas basadas únicamente en la información publicada en este
         sitio. Los resultados de implementación dependen de múltiples factores internos de cada empresa.</p>
     </div>
   </div>
 
-  <!-- Modal Cookies -->
   <div class="modal-overlay" id="modal-cookies">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal('modal-cookies')" aria-label="Cerrar">✕</button>
       <h2>Política de Cookies</h2>
       <p>Este sitio web utiliza cookies y tecnologías similares para mejorar tu experiencia.</p>
-
       <h3>¿Qué son las cookies?</h3>
       <p>Son pequeños archivos de texto que se almacenan en tu dispositivo cuando visitas un sitio web. Nos ayudan a
         recordar tus preferencias.</p>
-
       <h3>Cookies que utilizamos</h3>
       <ul>
         <li><strong>Cookies técnicas (Esenciales):</strong> Utilizamos <code>localStorage</code> para recordar tu
           preferencia de tema (claro u oscuro). Esta cookie no rastrea tu comportamiento ni recopila datos personales;
           es puramente funcional.</li>
-        <li><strong>Cookies de terceros:</strong> Usamos Google reCAPTCHA (para proteger nuestros formularios contra
-          spam) y Google Fonts (para cargar tipografías). Estas herramientas pueden instalar cookies técnicas necesarias
-          para su funcionamiento.</li>
+        <li><strong>Cookies de terceros:</strong> Usamos Google Fonts (para cargar tipografías). Estas herramientas
+          pueden instalar cookies técnicas necesarias para su funcionamiento.</li>
       </ul>
-
       <h3>¿Cómo desactivarlas?</h3>
       <p>Puedes configurar tu navegador para rechazar todas las cookies o para que te avise cuando se envíe una. Ten en
         cuenta que si desactivas las cookies técnicas, es posible que algunas funcionalidades (como el cambio de tema)
@@ -2154,7 +2269,7 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    /* Control de Modales Legales */
+    /* MODALES */
     function openModal(id) {
       document.getElementById(id).classList.add('active');
       document.body.style.overflow = 'hidden';
@@ -2169,7 +2284,7 @@
       });
     });
 
-    /* Menú mobile */
+    /* MOBILE MENU */
     (function () {
       const mobileMenu = document.getElementById('mobileMenu');
       const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -2195,35 +2310,40 @@
       }
     })();
 
-    /* Theme toggle */
+    /* ✅ MOBILE: nav auto-hide al scroll down (solo móvil) */
+    (function () {
+      if (window.innerWidth > 768) return;
+      let lastY = 0;
+      const nav = document.getElementById('mainNav');
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const y = window.scrollY;
+          if (y > lastY && y > 100) nav.style.transform = 'translateY(-100%)';
+          else nav.style.transform = 'translateY(0)';
+          lastY = y;
+          ticking = false;
+        });
+      }, { passive: true });
+    })();
+
+    /* THEME TOGGLE */
     (function () {
       const root = document.documentElement;
       const btn = document.getElementById('themeToggle');
-      const RECAPTCHA_SITE_KEY = '6LfyZOItAAAAAHOS5B4Dxd8jlxndGxrvKLQAqA45';
       function currentTheme() { return root.getAttribute('data-theme') || 'light'; }
       function applyTheme(theme) {
         root.setAttribute('data-theme', theme);
         try { localStorage.setItem('theme', theme); } catch (e) { }
         btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
-        const wrap = document.querySelector('.g-recaptcha');
-        if (wrap && typeof window.grecaptcha !== 'undefined' && !captchaOk) {
-          const parent = wrap.parentNode;
-          const fresh = document.createElement('div');
-          fresh.className = 'g-recaptcha';
-          fresh.setAttribute('data-sitekey', RECAPTCHA_SITE_KEY);
-          fresh.setAttribute('data-callback', 'onCaptchaSuccess');
-          fresh.setAttribute('data-error-callback', 'onCaptchaError');
-          fresh.setAttribute('data-expired-callback', 'onCaptchaExpired');
-          fresh.setAttribute('data-theme', theme === 'light' ? 'light' : 'dark');
-          parent.replaceChild(fresh, wrap);
-          try { window.grecaptcha.render(fresh); } catch (e) { }
-        }
       }
       btn.setAttribute('aria-pressed', currentTheme() === 'dark' ? 'true' : 'false');
       btn.addEventListener('click', () => { applyTheme(currentTheme() === 'dark' ? 'light' : 'dark'); });
     })();
 
-    /* Pre-selección de servicio */
+    /* PRE-SELECCIÓN SERVICIO */
     document.querySelectorAll('[data-service]').forEach(el => {
       el.addEventListener('click', () => {
         const service = el.getAttribute('data-service');
@@ -2231,52 +2351,42 @@
       });
     });
 
-    /* Chat */
+    /* CARRUSEL: actualizar dots al scroll */
+    (function () {
+      document.querySelectorAll('.carousel-container').forEach(carousel => {
+        const hint = carousel.nextElementSibling;
+        if (!hint || !hint.classList.contains('carousel-hint')) return;
+        const dots = hint.querySelectorAll('.carousel-dot');
+        if (!dots.length) return;
+
+        let ticking = false;
+        carousel.addEventListener('scroll', () => {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            const card = carousel.querySelector('.solution-card');
+            if (!card) { ticking = false; return; }
+            const cardWidth = card.offsetWidth + 20;
+            const activeIndex = Math.round(carousel.scrollLeft / cardWidth);
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === activeIndex));
+            ticking = false;
+          });
+        }, { passive: true });
+      });
+    })();
+
+    /* CHAT (Sin reCAPTCHA) */
     const startChatBtn = document.getElementById('startChatBtn');
     const contactStart = document.getElementById('contactStart');
-    const captchaContainer = document.getElementById('captchaContainer');
     const chatContainer = document.getElementById('chatContainer');
-    const IS_FILE_PROTOCOL = window.location.protocol === 'file:';
-    const IS_LOCALHOST = /^(localhost|127\.0\.0\.1|0\.0\.0\.0)$/.test(window.location.hostname);
-    let captchaOk = false;
 
     if (startChatBtn) {
       startChatBtn.addEventListener('click', () => {
         contactStart.style.display = 'none';
-        if (IS_FILE_PROTOCOL || IS_LOCALHOST) {
-          openChat();
-        } else {
-          captchaContainer.style.display = 'flex';
-        }
+        chatContainer.style.display = 'flex';
+        startChat();
       });
     }
-
-    function openChat() {
-      captchaOk = true;
-      captchaContainer.style.display = 'none';
-      chatContainer.style.display = 'flex';
-      startChat();
-    }
-
-    async function onCaptchaSuccess(token) {
-      try {
-        const res = await fetch('/api/verify-recaptcha', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token })
-        });
-        const data = await res.json();
-        if (data.success) { openChat(); }
-        else {
-          alert('Error de verificación. Intenta de nuevo.');
-          captchaContainer.style.display = 'none';
-          contactStart.style.display = 'block';
-        }
-      } catch (err) { openChat(); }
-    }
-    function onCaptchaError() { alert('Error al cargar la verificación.'); captchaContainer.style.display = 'none'; contactStart.style.display = 'block'; }
-    function onCaptchaExpired() { captchaContainer.style.display = 'none'; contactStart.style.display = 'block'; }
-    window.onCaptchaSuccess = onCaptchaSuccess; window.onCaptchaError = onCaptchaError; window.onCaptchaExpired = onCaptchaExpired;
 
     const BRAND_NAME = 'Pahe Scale';
     const WA_NUMBER = '573112581129';
@@ -2332,6 +2442,12 @@
       scrollToBottom();
     }
 
+    if (chatInput) {
+      chatInput.addEventListener('focus', () => {
+        setTimeout(scrollToBottom, 300);
+      });
+    }
+
     async function startChat() {
       chatState.step = 'greeting';
       chatWindow.innerHTML = '';
@@ -2380,47 +2496,39 @@
       if (/(humano|asesor|persona|hablar|contacto|reunion|agendar|precio|costo|cu[aá]nto|tarifa|cotizar|propuesta)/i.test(t)) {
         return offerWhatsApp();
       }
-
       if (/(web|pagina|landing|vender|tienda|e-commerce|carrito)/i.test(t)) {
         chatState.data.context = 'web';
         await addBotMessage("¡Excelente! Creamos páginas web y landing pages diseñadas específicamente para captar clientes y aumentar tus ventas. También desarrollamos tiendas online completas.");
         return addBotMessage("¿Te gustaría saber cómo podríamos aplicar esto a tu negocio, o prefieres hablar de la automatización de WhatsApp?");
       }
-
       if (/(whatsapp|chat|bot|automatiza|respuesta|mensaje)/i.test(t)) {
         chatState.data.context = 'web';
         await addBotMessage("La automatización de WhatsApp es una de las herramientas más poderosas hoy. Configuramos respuestas rápidas, catálogos y agendas para que atiendas clientes 24/7 sin esfuerzo.");
         return addBotMessage("¿Quieres que agendemos un diagnóstico para ver cómo implementarlo en tu empresa?");
       }
-
       if (/(datos|reporte|dashboard|kpi|bi|power|excel|indicador|m[eé]trica)/i.test(t)) {
         chatState.data.context = 'bi';
         await addBotMessage("Nos especializamos en unificar datos dispersos. Creamos dashboards visuales y automatizamos reportes para que dejes de perder horas en Excel y tomes decisiones con información en tiempo real.");
         return addBotMessage("¿Tienes actualmente problemas con reportes manuales o datos dispersos en tu empresa?");
       }
-
       if (/(proceso|lean|six sigma|calidad|desperdicio|eficiencia|reingenieria)/i.test(t)) {
         chatState.data.context = 'lean';
         await addBotMessage("Aplicamos Lean Six Sigma para optimizar tus operaciones. Eliminamos cuellos de botella, reducimos desperdicios y estandarizamos la calidad. Nuestro equipo cuenta con certificación Black Belt.");
         return addBotMessage("¿En qué área de tu operación sientes que estás perdiendo más tiempo o dinero actualmente?");
       }
-
       if (/(servicio|postventa|t[eé]cnico|garantia|reparaci[oó]n|centro)/i.test(t)) {
         chatState.data.context = 'service';
         await addBotMessage("Estructuramos toda tu área de postventa: desde el diseño de procesos y roles, hasta la logística de repuestos y redes de centros autorizados. Logramos que tu servicio al cliente sea un diferenciador de marca.");
         return addBotMessage("¿Manejas servicio técnico propio o a través de terceros?");
       }
-
       if (/(academia|formaci[oó]n|capacitaci[oó]n|entrenamiento|curso|curriculo)/i.test(t)) {
         chatState.data.context = 'training';
         await addBotMessage("Diseñamos e implementamos academias técnicas y programas de formación a la medida. Hemos creado academias para grandes marcas como LG, Samsung y Challenger.");
         return addBotMessage("¿Necesitas capacitar a tu equipo interno o a tu red de distribuidores?");
       }
-
       if (/(hola|buenas|hey|qu[eé] tal|saludos)/i.test(t)) {
         return addBotMessage("¡Hola! ¿En qué área necesitas ayuda hoy: Web/WhatsApp, Datos, Procesos, Postventa o Formación?");
       }
-
       if (/(inicio|volver|menu|empezar|atras)/i.test(t)) {
         return startChat();
       }
@@ -2490,7 +2598,7 @@
       }
     }
 
-    /* Submit del form */
+    /* FORM SUBMIT (Protegido por Honeypot, sin reCAPTCHA) */
     (function () {
       const form = document.getElementById('leadForm');
       const toggleLink = document.getElementById('toggleChatLink');
@@ -2510,7 +2618,14 @@
         form.addEventListener('submit', async (e) => {
           e.preventDefault();
           const data = Object.fromEntries(new FormData(form));
-          if (data.website) return;
+
+          // Honeypot check (si el campo website tiene valor, es un bot)
+          if (data.website) {
+            // Simulamos éxito para engañar al bot
+            form.innerHTML = '<p class="form-success">✅ Listo, ' + (data.name || '').split(' ')[0] + '. Te contactamos en menos de 24h hábiles.</p>';
+            return;
+          }
+
           const btn = form.querySelector('button[type="submit"]');
           const originalText = btn.textContent;
           btn.disabled = true;
@@ -2540,13 +2655,14 @@
     })();
   </script>
 
-  <!-- ✅ MATRIX: lluvia binaria sutil en el nav -->
+  <!-- MATRIX: lluvia binaria (solo desktop) -->
   <script>
     (function () {
       const canvas = document.getElementById('navMatrix');
       if (!canvas) return;
 
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (window.matchMedia('(max-width: 768px)').matches) return;
 
       const ctx = canvas.getContext('2d');
       const nav = canvas.parentElement;
