@@ -50,7 +50,7 @@
     content="Soluciones tecnológicas, analítica y optimización de procesos para PyMEs y grandes empresas.">
   <meta name="twitter:image" content="https://pahescale.netlify.app/Pahe_Scale.png">
 
-  <!-- ============ SCHEMA.ORG (Optimizado para IAs) ============ -->
+  <!-- ============ SCHEMA.ORG ============ -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -258,6 +258,32 @@
       display: flex;
       align-items: center;
       transition: background-color var(--transition), border-color var(--transition);
+      overflow: hidden;
+    }
+
+    /* ✅ MATRIX: efecto lluvia binaria sutil */
+    .nav-matrix {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.55;
+      mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    }
+
+    .nav-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .nav-matrix {
+        display: none;
+      }
     }
 
     .nav-inner {
@@ -1567,6 +1593,9 @@
 <body>
 
   <nav class="nav" aria-label="Navegación principal">
+    <!-- ✅ MATRIX: canvas de lluvia binaria sutil -->
+    <canvas id="navMatrix" class="nav-matrix" aria-hidden="true"></canvas>
+
     <div class="nav-inner">
       <a href="#hero" class="nav-brand" aria-label="Inicio">Pahe Scale</a>
 
@@ -2348,12 +2377,10 @@
     async function handleFreeMessage(text) {
       const t = text.toLowerCase();
 
-      // Detección de intención de hablar con humano o precios
       if (/(humano|asesor|persona|hablar|contacto|reunion|agendar|precio|costo|cu[aá]nto|tarifa|cotizar|propuesta)/i.test(t)) {
         return offerWhatsApp();
       }
 
-      // Detección de temas de servicios
       if (/(web|pagina|landing|vender|tienda|e-commerce|carrito)/i.test(t)) {
         chatState.data.context = 'web';
         await addBotMessage("¡Excelente! Creamos páginas web y landing pages diseñadas específicamente para captar clientes y aumentar tus ventas. También desarrollamos tiendas online completas.");
@@ -2398,7 +2425,6 @@
         return startChat();
       }
 
-      // Fallback inteligente
       await addBotMessage("Entiendo. Es un tema interesante. Para darte una respuesta precisa y evaluar cómo podemos ayudarte, lo ideal es que un asesor humano revise tu caso particular.");
       setOptions([
         { label: "💬 Hablar con un asesor (WhatsApp)", action: () => offerWhatsApp() },
@@ -2511,6 +2537,120 @@
           sessionStorage.removeItem('preselected_service');
         }
       }
+    })();
+  </script>
+
+  <!-- ✅ MATRIX: lluvia binaria sutil en el nav -->
+  <script>
+    (function () {
+      const canvas = document.getElementById('navMatrix');
+      if (!canvas) return;
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const ctx = canvas.getContext('2d');
+      const nav = canvas.parentElement;
+      const FONT_SIZE = 11;
+      const SPEED_BASE = 0.55;
+      let columns = [];
+      let timerId = null;
+      let running = false;
+
+      function getPalette() {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        return {
+          fade: isDark ? 'rgba(10, 14, 26, 0.10)' : 'rgba(247, 242, 234, 0.10)',
+          rgb: isDark ? '100, 255, 218' : '9, 49, 141'
+        };
+      }
+
+      function resize() {
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = nav.offsetWidth * dpr;
+        canvas.height = nav.offsetHeight * dpr;
+        canvas.style.width = nav.offsetWidth + 'px';
+        canvas.style.height = nav.offsetHeight + 'px';
+        ctx.scale(dpr, dpr);
+
+        const colCount = Math.floor(nav.offsetWidth / FONT_SIZE);
+        columns = new Array(colCount).fill(0).map(() => Math.random() * -50);
+      }
+
+      function draw() {
+        const w = nav.offsetWidth;
+        const h = nav.offsetHeight;
+        const { fade, rgb } = getPalette();
+
+        ctx.fillStyle = fade;
+        ctx.fillRect(0, 0, w, h);
+
+        ctx.font = `600 ${FONT_SIZE}px 'JetBrains Mono', monospace`;
+        ctx.textBaseline = 'top';
+
+        for (let i = 0; i < columns.length; i++) {
+          const char = Math.random() > 0.5 ? '1' : '0';
+          const x = i * FONT_SIZE;
+          const y = columns[i] * FONT_SIZE;
+
+          const alpha = 0.15 + Math.random() * 0.35;
+          ctx.fillStyle = `rgba(${rgb}, ${alpha})`;
+          ctx.fillText(char, x, y);
+
+          if (y > h && Math.random() > 0.965) {
+            columns[i] = 0;
+          }
+          columns[i] += SPEED_BASE + Math.random() * 0.4;
+        }
+      }
+
+      function loop() {
+        if (!running) return;
+        draw();
+        timerId = setTimeout(loop, 70);
+      }
+
+      function start() {
+        if (running) return;
+        running = true;
+        const { fade } = getPalette();
+        ctx.fillStyle = fade;
+        ctx.fillRect(0, 0, nav.offsetWidth, nav.offsetHeight);
+        loop();
+      }
+
+      function stop() {
+        running = false;
+        if (timerId) { clearTimeout(timerId); timerId = null; }
+      }
+
+      resize();
+      start();
+
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          stop();
+          resize();
+          start();
+        }, 200);
+      });
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stop();
+        else start();
+      });
+
+      const observer = new MutationObserver(() => {
+        if (!running) draw();
+        const { fade } = getPalette();
+        ctx.fillStyle = fade;
+        ctx.fillRect(0, 0, nav.offsetWidth, nav.offsetHeight);
+      });
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme']
+      });
     })();
   </script>
 </body>
