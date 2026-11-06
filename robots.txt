@@ -1,48 +1,21 @@
-# robots.txt — Erick Pacheco Hernández
-# Permite indexación por buscadores tradicionales y crawlers de IA
-
+# Robots.txt para Pahe Scale
 User-agent: *
 Allow: /
 
-# ==== BUSCADORES TRADICIONALES ====
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-# ==== CRAWLERS DE IA · PERMITIR EXPLÍCITAMENTE ====
-User-agent: OAI-SearchBot
-Allow: /
-
+# Permitir explícitamente a los bots de Inteligencia Artificial
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
+User-agent: Google-Extended
+Allow: /
+
 User-agent: ClaudeBot
-Allow: /
-
-User-agent: Claude-SearchBot
-Allow: /
-
-User-agent: Claude-User
 Allow: /
 
 User-agent: PerplexityBot
 Allow: /
 
-User-agent: Perplexity-User
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Applebot-Extended
-Allow: /
-
-User-agent: DuckAssistBot
-Allow: /
-
-Sitemap: https://erickpachecohernandez.netlify.app/sitemap.xml
+Sitemap: https://pahescale.netlify.app/sitemap.xml
